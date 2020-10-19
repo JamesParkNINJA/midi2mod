@@ -1,6 +1,6 @@
-/* -------- FT2MOD -------- */
+/* -------- MIDI2MOD -------- */
 /*  midi2mod.jamespark.ninja  */
-/* --- James Park: 2020 --- */
+/* ---- James Park: 2020 ---- */
   
   var playItem;
   var autoPlay = false;
@@ -404,7 +404,7 @@ jQuery(document).ready( function($) {
           
             instr.sample.data = [];
 
-            var sampleEnd = instr.sample.l;
+            var sampleEnd = sampleStart + instr.sample.l;
           
             if (instr){
                 //console.log("Reading sample from 0x" + instrument.i + " with length of " + instrument.sample.l + " bytes and repeat length of " + instrument.sample.loop.l);
@@ -422,12 +422,13 @@ jQuery(document).ready( function($) {
                 //console.log('Start Byte: '+sampleStart+ ' + '+instrument.sample.l+' = End Byte: '+sampleEnd);
                 //console.log(readByte(theBuffer, sampleStart));
 
-                for (var j = 0; j<=sampleEnd; j++){
+                for (var j = sampleStart; j<=sampleEnd-2; j++){
                     //console.log(j);
-                    var x = sampleStart + j;
-                    var b = readByte(theBuffer, x);
+                    var b = readByte(theBuffer, j);
                     instr.sample.data.push(b);
                 }
+              
+                sampleStart = j; 
               
                 /*
                 if (instr.sample.loop.l>2){
@@ -629,7 +630,7 @@ jQuery(document).ready( function($) {
           }
         }
         
-        //console.log(patStart);
+        console.log(instruments);
         
         samplesPos = 1084 + (1024 * highestPattern);
 
@@ -639,6 +640,7 @@ jQuery(document).ready( function($) {
 				var d;
 				// instrument length is in word
               
+                console.log(instruments[ins].sample.data.length);
 				for (i = 0; i < instruments[ins].sample.data.length; i++){
 					d = instruments[ins].sample.data[i] || 0;
 					writeByte(file, d, samplesPos);
@@ -1161,7 +1163,7 @@ jQuery(document).ready( function($) {
     */
     //console.log(output[0]);
     
-    console.log(output);
+    //console.log(output);
     
     var oArr = output[0], next = 0;
     for (var o = 0; o<output.length; o++) {
