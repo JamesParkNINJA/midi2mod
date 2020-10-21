@@ -72,7 +72,7 @@ img.gb_img {
   max-height:1.4em;
   margin:0 .2em;
   display:inline-block;
-  vertical-align:bottom;
+  vertical-align:middle;
 }
 
 input,
@@ -195,19 +195,19 @@ a:not([class]):hover {
 }
 
 textarea {
-  font-size:0.25em;
+  font-size:.6em;
   width:100%;
-  min-height:200px;
+  min-height:100px;
   max-width: 100%;
 }
 
 label, select {
-  font-size:.4em;
+  font-size:.6em;
 }
 
 select,
 select option {
-  background:#86c06c;
+  background:#82922D;
   color:#071821;
 }
 
@@ -218,6 +218,7 @@ select option {
   border-radius:17px;
   border:.5em solid #252b3a;
   margin:1em 0;
+  font-size:.7em;
 }
 
 h1 > span {
@@ -226,14 +227,14 @@ h1 > span {
 
 label,
 .text_small {
-  font-size:.4em;
+  font-size:.6em;
   font-weight:bold;
 }
 
 [name="midi2mod-a-tracker-select"],
 label {
-  display:block;
-  margin-bottom:1em;
+  display:inline-block;
+  margin-bottom:.5em;
 }
 
 .btn-container {
@@ -245,7 +246,7 @@ label {
 .midi2mod-a-generate {
   color:#e0f8cf;
   background:var(--brand1);
-  font-size:0.4em;
+  font-size:.8em;
   padding:15px 20px;
   border-radius:17px;
   -webkit-transition:  0.3s all;
@@ -289,16 +290,15 @@ input[type="file"] {
 
 /* BASSOON */
 #player{
-    width: 320px;
-    background-color: #eaeaea;
-    border: 1px solid #b7b7b7;
-    padding: 6px;
-    border-radius: 5px;
-    margin: auto;
-     opacity:0;
-      pointer-events:none;
+  width: 100%;
+  border: 1px solid rgba(7, 24, 33, 0.71);
+  padding: 2px;
+  margin: auto;
+  opacity:0;
+  pointer-events:none;
   -webkit-transition:  0.3s opacity;
   transition:0.3s opacity;
+  margin-top:.5em;
 }
 
 #player.active {
@@ -307,41 +307,43 @@ input[type="file"] {
 }
 
 #play{
-    border-radius: 5px;
-    display: inline-block;
-    padding: 8px;
-    border: 1px solid #b7b7b7;
-    background-color: #f2f2f2;
-    width: 80px;
-    height: 36px;
-    text-align: center;
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
-    font-size: 16px;
+  display: inline-block;
+  padding: 2px;
+  border: 1px solid rgba(7, 24, 33, 0.71);
+  text-align: center;
+  font-size: .6em;
+  width:20%;
+  vertical-align:middle;
 }
 
 #play:hover{
-    background-color: white;
-    cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.09);
+  cursor: pointer;
 }
 
 #songname{
-    padding: 4px;
-    margin-bottom: 6px;
-    border-bottom: 1px solid #b7b7b7;
-    text-transform: capitalize;
-    font-size: 16px;
+  padding: 2px;
+  border-bottom: 1px solid rgba(7, 24, 33, 0.71);
+  text-transform: capitalize;
+  font-size: .6em;
+  margin-bottom:2px;
 }
 
 .range{
-    font-size: 11px;
-    padding: 16px 6px 6px 6px;
+    font-size: .6em;
+    padding: 2px;
     display: inline-block;
     width: 80px;
 }
 
+.range.vol_range {
+  display:none;
+}
+
 .range.wide{
-    width: 215px;
-    float: right;
+  width:72%;
+  display:inline-block;
+  vertical-align:middle;
 }
 
 .range input{
@@ -357,10 +359,240 @@ input[type="file"] {
     float: right;
     border-radius: 5px;
   position:relative;
+  display:none;
 }
 
 #scope canvas:last-child {
   position:absolute;
   top:0;
   left:0;
+}
+
+.gameboy-outer {
+  font-size:.4em;
+  width:26em;
+  padding-top:2em;
+}
+
+.gameboy-outer *:not(a) {
+  color: #071821;
+}
+
+.gameboy-cart-box {
+  height:6em;
+  width:100%;
+  overflow:hidden;
+  padding-top:1em;
+}
+.gameboy-cart:before {
+  content:'';
+  width:calc(100% - 1em);
+  height:1em;
+  position:absolute;
+  top:-1em;
+  left:0;
+  background: rgb(173, 173, 173);
+}
+.gameboy-cart {
+  margin:0 auto 0 auto;
+  width:calc(100% - 6em);
+  height:100%;
+  background: rgb(173, 173, 173);
+  position:relative;
+  padding:1em;
+  text-align:center;
+  -webkit-transition:  1s all;
+  transition:1s all; 
+  top:0;
+}
+
+.gameboy-outer.loaded .gameboy-cart {
+  top:5em;
+}
+
+.gameboy-base {
+  background: rgb(230,230,230);
+  background: -webkit-linear-gradient(315deg, rgba(230,230,230,1) 0%, rgba(179,179,179,1) 100%);
+  background: linear-gradient(135deg, rgba(230,230,230,1) 0%, rgba(179,179,179,1) 100%);
+  height:26em;
+  width:26em;
+  border-radius:.4em .4em 4em .4em;
+  position:relative;
+  box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.36);
+  z-index:10;
+}
+
+.gameboy-padding {
+  height:2em;
+  width:100%;
+  border-bottom:2px solid rgba(0,0,0,0.1);
+}
+
+.gameboy-lines {
+  width:calc(100% - 4em);
+  display:block;
+  margin:0 auto;
+  border-left:2px solid rgba(0,0,0,0.1);
+  border-right:2px solid rgba(0,0,0,0.1);
+  height:100%;
+}
+
+.gameboy-screen {
+  background-color:#65626f;
+  border-radius:.8em .8em 4em .8em;
+  margin:2em;
+  padding:1.3em 2.8em;
+  position:relative;
+}
+
+.gameboy-screen:before {
+  content:'';
+  width:.6em;
+  height:.6em;
+  border-radius:50%;
+  background:#151515;
+  display:block;
+  position:absolute;
+  top:4em;
+  left:1em;
+  box-shadow: 0px 0px 10px 0px rgba(255,107,107,0);
+  -webkit-transition:  0.3s all;
+  transition:0.3s all;
+}
+
+.gameboy-outer.loaded .gameboy-screen:before {
+  background:red;
+  box-shadow: 0px 0px 10px 0px rgba(255,107,107,1);
+}
+
+.gameboy-screen-inner {
+  background-color:#82922D;
+  box-shadow: inset -11px -11px 18px 0px rgba(0,0,0,0.18), inset 2px 3px 8px 0px rgba(0,0,0,0.18);
+  height:12em;
+  padding:.6em 1em;
+}
+
+.gameboy-options {
+  padding:0 2em;
+}
+
+.gameboy-printout {
+  width:calc(100% - 6em);
+  margin:-2em auto 0 auto;
+  display:block;
+  overflow:hidden;
+  position:relative;
+  height:13em;
+}
+
+.gameboy-printout-inner {
+  background:white;
+  padding:4em 2em 2em 2em;
+  top:-100%;
+  left:0;
+  width:100%;
+  height:100%;
+  position:absolute;
+  -webkit-transition:  1s all;
+  transition:1s all;
+  z-index:1;
+}
+
+.gameboy-outer.loaded .gameboy-printout-inner {
+  top:0;
+}
+
+input[type=range] {
+  width: 100%;
+  margin: 3.75px 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  background: #637e57;
+  border: 0;
+  width: 100%;
+  height: 1em;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  margin-top: -.1em;
+  width: .8em;
+  height: 1.2em;
+  background: #071821;
+  border: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #6f8d61;
+}
+input[type=range]::-moz-range-track {
+  background: #637e57;
+  border: 0;
+  width: 100%;
+  height: 1em;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  width: .8em;
+  height: 1.2em;
+  background: #071821;
+  border: 0;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  border-width: 3.75px 0;
+  color: transparent;
+  width: 100%;
+  height: 1em;
+  cursor: pointer;
+}
+input[type=range]::-ms-fill-lower {
+  background: #576f4d;
+  border: 0;
+}
+input[type=range]::-ms-fill-upper {
+  background: #637e57;
+  border: 0;
+}
+input[type=range]::-ms-thumb {
+  width: .8em;
+  height: 1.2em;
+  background: #071821;
+  border: 0;
+  cursor: pointer;
+  margin-top: 0px;
+  /*Needed to keep the Edge thumb centred*/
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #637e57;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #6f8d61;
+}
+/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+how to remove the virtical space around the range input in IE*/
+@supports (-ms-ime-align:auto) {
+  /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+  input[type=range] {
+    margin: 0;
+    /*Edge starts the margin from the thumb, not the track as other browsers do*/
+  }
+}
+
+.song-settings {
+  max-height:0px;
+  overflow:hidden;
+  -webkit-transition: 1s max-height;
+  transition:1s max-height;
+}
+
+.loaded .song-settings {
+  max-height:12em;
 }

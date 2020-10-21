@@ -173,6 +173,8 @@
 
 jQuery(document).ready( function($) {
   
+  $('#gb').get(0).pause();
+  
   var mURL = '';
   
   async function loadModule(url, pArray, save){
@@ -681,6 +683,7 @@ jQuery(document).ready( function($) {
         }
         
         $('.save.disabled').removeClass('disabled');
+        $('.upload.disabled').removeClass('disabled');
         $('#Player:not(.active)').addClass('active');
         
         //var pt = ProTracker();
@@ -1287,6 +1290,10 @@ jQuery(document).ready( function($) {
   
   function handleFile(e){
     if (e.files && e.files[0]) {
+      if (!$('.gameboy-outer').hasClass('loaded')) {
+        $('.gameboy-outer:not(.loaded)').addClass('loaded');
+        $('#gb').get(0).play();
+      }
       var reader = new FileReader();
       reader.onload = function(event){
         mURL = event.target.result;
